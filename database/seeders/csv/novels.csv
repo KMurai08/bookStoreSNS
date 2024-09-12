@@ -1,0 +1,5 @@
+novel_id,user_id,novel_url,novel_title,novel_introduction,novel_text,genre_id,status,story_length,created_at,updated_at
+1,1,https://...,晴れた日,ロマンス小説です,本文,1,完結,短編,,
+2,2,https://...,邪馬台国の滅亡①,歴史小説です,本文,4,連載中,長編,,
+3,2,https://...,志賀島の金印,歴史小説です,本文,5,休止中,中編,,
+4,2,https://...,邪馬台国の滅亡②,歴史小説です,本文,4,連載中,長編,,
