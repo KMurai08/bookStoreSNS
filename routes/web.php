@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\NovelController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UserController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -10,6 +13,14 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+// 追加部分
+Route::get('/users', [UserController::class, 'index']);
+Route::get('/users/{id}', [UserController::class, 'show']);
+
+Route::get('/novels', [NovelController::class, 'index']);
+Route::get('/novels/{id}', [NovelController::class, 'show']);
+
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
