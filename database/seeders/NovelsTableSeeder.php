@@ -4,30 +4,30 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use League\Csv\Reader;
+use Carbon\Carbon;
 
 class NovelsTableSeeder extends Seeder
 {
     public function run()
     {
-        $csvFile = database_path('seeders/csv/novels.csv');
-        $csvData = array_map('str_getcsv', file($csvFile));
+        $csv = Reader::createFromPath(storage_path('app/novels.csv'), 'r');
+        $csv->setHeaderOffset(0);
 
-        $header = array_shift($csvData);
-
-        foreach ($csvData as $row) {
-            $data = array_combine($header, $row);
+        foreach ($csv as $record) {
+            $now = Carbon::now();
             DB::table('novels')->insert([
-                'novel_id' => $data['novel_id'],
-                'user_id' => $data['user_id'],
-                'novel_url' => $data['novel_url'],
-                'novel_title' => $data['novel_title'],
-                'novel_introduction' => $data['novel_introduction'],
-                'novel_text' => $data['novel_text'],
-                'genre_id' => $data['genre_id'],
-                'status' => $data['status'],
-                'story_length' => $data['story_length'],
-                'created_at' => now(),
-                'updated_at' => now(),
+                'novel_id' => $record['novel_id'],
+                'user_id' => $record['user_id'],
+                'novel_url' => $record['novel_url'],
+                'novel_title' => $record['novel_title'],
+                'novel_introduction' => $record['novel_introduction'],
+                'novel_text' => $record['novel_text'],
+                'genre_id' => $record['genre_id'],
+                'status' => $record['status'],
+                'story_length' => $record['story_length'],
+                'created_at' => $now,
+                'updated_at' => $now,
             ]);
         }
     }

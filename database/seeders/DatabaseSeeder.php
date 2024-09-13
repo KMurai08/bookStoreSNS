@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
 {
     $this->call([
         GenreSeeder::class,
+        TagSeeder::class,
         UsersTableSeeder::class,
         NovelsTableSeeder::class,  // 追加
         

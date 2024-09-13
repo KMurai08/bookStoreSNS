@@ -20,6 +20,7 @@ $user = $novel->user;
     return view('novels.show')->with([
         'novel_title' => $novel->novel_title,
         'novel_text' => $novel->novel_text,
+        'updated_at' => $novel->updated_at,
         'name' => $user->name
     ]);
 }
