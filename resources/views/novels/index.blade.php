@@ -7,6 +7,7 @@
     <title>小説一覧</title>
 </head>
 <body class="bg-sky-50">
+
     <div class="contentsWrapper p-10">
     <h1 class="my-5">小説一覧</h1>
 

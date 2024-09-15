@@ -3,7 +3,8 @@
 use App\Http\Controllers\NovelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ReviewController;
+use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -14,12 +15,23 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-// 追加部分
+Route::get('/novels/show', [ReviewController::class, 'create'])
+    ->name('review.create')
+    ->middleware(['auth', 'verified']);
+
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 
+// web.php
+
+// 小説表示処理
 Route::get('/novels', [NovelController::class, 'index']);
-Route::get('/novels/{id}', [NovelController::class, 'show']);
+Route::get('/novels/{id}', [NovelController::class, 'show'])->name('novels.show');
+
+// レビュー投稿処理（変更あり）
+Route::post('/novels/{id}', [ReviewController::class, 'store'])
+    ->name('review.store')
+    ->middleware(['auth', 'verified']);
 
 
 Route::middleware('auth')->group(function () {
