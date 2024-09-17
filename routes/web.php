@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookstoreController;
 use App\Http\Controllers\NovelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
@@ -32,6 +33,10 @@ Route::get('/novels/{id}', [NovelController::class, 'show'])->name('novels.show'
 Route::post('/novels/{id}', [ReviewController::class, 'store'])
     ->name('review.store')
     ->middleware(['auth', 'verified']);
+
+//bookstore表示処理
+Route::get('/bookstore', [BookstoreController::class, 'index']);
+
 
 
 Route::middleware('auth')->group(function () {
