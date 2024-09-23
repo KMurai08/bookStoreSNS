@@ -32,11 +32,19 @@ public function show($id)
         'novel_text' => $novel->novel_text,
         'novel_introduction' => $novel->novel_introduction,
         'updated_at' => $novel->updated_at,
-        'novel_id' => $novel->novel_id,//追加
-    //ユーザーの情報
+        'novel_id' => $novel->id,//追加
+    //小説作者の名前
         'name' => $user->name,
     //レビューの情報
-        'reviews' => $reviews,
+         'reviews' => $reviews->map(function ($review) {
+                return [
+                    'review_text' => $review->review_text,
+                    'review_title' => $review->review_title,
+                    'reviewer_name' => $review->user->name,
+                    'review_created_at' => $review->created_at,
+                ];
+            }),
+        
     ]);
 }
     /**

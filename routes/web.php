@@ -5,16 +5,12 @@ use App\Http\Controllers\NovelController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReviewController;
-use App\Models\Review;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+//最初の画面に本屋一覧を表示
+Route::get('/', [BookStoreController::class, 'index']);
+//一覧にある本屋をクリックでその本屋の詳細画面へ移動
+Route::get('/bookstore/{id}',[BookstoreController::class,'show'])->name('bookstores.show');
 
 Route::get('/novels/show', [ReviewController::class, 'create'])
     ->name('review.create')
@@ -38,6 +34,9 @@ Route::post('/novels/{id}', [ReviewController::class, 'store'])
 Route::get('/bookstore', [BookstoreController::class, 'index']);
 
 
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

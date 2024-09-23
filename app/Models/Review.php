@@ -9,7 +9,7 @@ class Review extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = 'review_id';
+    protected $primaryKey = 'id';
 
     protected $fillable = [
         'novel_id',
@@ -29,4 +29,10 @@ class Review extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
+//そのレビューをイチオシ登録したユーザー情報を取得
+    public function favoritedBy()
+{
+    return $this->belongsToMany(User::class, 'user_favorite_reviews', 'review_id', 'user_id')
+                ->withTimestamps();
+}
 }

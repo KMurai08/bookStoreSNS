@@ -71,10 +71,10 @@
 
                 @foreach($reviews as $review)
                     <div class="border-2 p-2 my-3 rounded-lg">
-                        <span class="">{{ $name }}</span>
-                        <span class="">{{ $review->created_at }}</span>
-                        <h3 class="font-semibold border-b mb-2">{{ $review->review_title }}</h3>                      
-                        <p>{{ $review->review_text }}</p>
+                        <span class="">{{ $review['reviewer_name'] }}</span>
+                        <span class="">{{ $review['review_created_at'] }}</span>
+                        <h3 class="font-semibold border-b mb-2">{{ $review['review_title'] }}</h3>                      
+                        <p>{{ $review['review_text'] }}</p>
                     </div>
                 @endforeach
             </div>
