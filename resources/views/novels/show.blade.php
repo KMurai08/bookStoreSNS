@@ -78,13 +78,6 @@
                     </div>
                 @endforeach
             </div>
-
-        <!-- Back to List Button -->
-        <div class="text-right">
-            <a href="{{ url('/novels') }}" class="inline-block bg-gray-500 hover:bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-110">
-                作品一覧に戻る
-            </a>
-        </div>
     </div>
 
 

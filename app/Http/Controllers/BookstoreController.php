@@ -12,16 +12,35 @@ class BookStoreController extends Controller
 
     public function index()
     {
-        $bookstores = BookStore::all();
-        return view('bookstores.index', compact('bookstores'));
+        // $bookstores = BookStore::all();
+        
+        // return view('bookstores.index', compact('bookstores'));
+
+                $bookstores = BookStore::with('user')->get();
+
+        $bookstoresData = $bookstores->map(function ($bookstore) {
+            $user = $bookstore->user;
+            $userFavoriteReview = $user->favoriteReviews()
+                ->select('reviews.id', 'reviews.review_title', 'reviews.review_text', 'reviews.novel_id')
+                ->with('novel:id,novel_title')
+                ->first();
+
+            return [
+                'bookstore' => $bookstore,
+                'user' => $user,
+                'favorite_review' => $userFavoriteReview,
+            ];
+        });
+
+        return view('bookstores.index', compact('bookstoresData'));
 
     }
 
     public function show($id)
     {
         $bookstore = BookStore::findOrFail($id);
+        //どのユーザーの本屋か取得
         $user = $bookstore->user;
-
         //イチオシレビュー表示の情報取得
         $userFavoriteReview = $user->favoriteReviews()
             ->select('reviews.id', 'reviews.review_title', 'reviews.review_text','reviews.novel_id')

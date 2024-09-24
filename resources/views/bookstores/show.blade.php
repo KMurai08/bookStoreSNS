@@ -54,7 +54,7 @@
         <div>
             <p class="text-l font-bold mx-5 mb-2">只今のイチオシ：{{ $favorite_novel_title }}
             </p>
-            <div class="hero bg-base-200">
+            <div class="hero bg-base-200 py-4">
                 <div class="hero-content text-center">
                     <div class="max-w-md">
                         <h1 class="text-4xl font-bold">{{ $favorite_review_title }}</h1>
@@ -68,7 +68,7 @@
                 </div>
             </div>
         </div>
-        <div class="flex justify-center items-center bg-base-200 p-10 mb-10">
+        <div class="flex justify-center items-center bg-base-200 p-10 mb-10 mt-10">
             <div class="relative w-full max-w-2xl bg-white px-10 rounded-lg shadow-lg overflow-hidden">
                 @foreach ($reviews as $index => $review)
                     <div class="slide {{ $index === 0 ? 'active' : 'hidden' }}">
