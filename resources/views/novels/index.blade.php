@@ -13,7 +13,7 @@
 
     <ul class="link link-primary">
         @foreach($novels as $novel)
-            <li><a href="{{ url('/novels/' . $novel->novel_id) }}">{{ $novel->novel_title }}</a></li>
+            <li><a href="{{ url('/novels/' . $novel->id) }}">{{ $novel->novel_title }}</a></li>
         @endforeach
     </ul>
 </div>

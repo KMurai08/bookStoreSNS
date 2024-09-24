@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class BookStore extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'bookstore_name',
+        'bookstore_introduction',
+        'url',
+        'header_img',
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+}
