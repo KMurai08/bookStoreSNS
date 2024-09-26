@@ -10,7 +10,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         // テーブルをクリア
-        User::truncate();
+        // User::truncate();
 
         // ダミーユーザーを作成
         User::factory()
