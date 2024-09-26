@@ -14,7 +14,7 @@ class UsersTableSeeder extends Seeder
 
         // ダミーユーザーを作成
         User::factory()
-            ->count(10)
+            ->count(3)
             ->create();
     }
 }
