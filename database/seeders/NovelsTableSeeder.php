@@ -22,7 +22,7 @@ class NovelsTableSeeder extends Seeder
         foreach ($csv as $record) {
             $now = Carbon::now();
             DB::table('novels')->insert([
-                'novel_id' => $record['novel_id'],
+                'id' => $record['id'],
                 'user_id' => $record['user_id'],
                 'novel_url' => $record['novel_url'],
                 'novel_title' => $record['novel_title'],
