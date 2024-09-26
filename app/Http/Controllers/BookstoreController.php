@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\BookStore;
+use App\Models\Bookstore;
 use App\Models\User;
 
 use Illuminate\Http\Request;
 
-class BookStoreController extends Controller
+class BookstoreController extends Controller
 {
 
     public function index()
@@ -16,7 +16,7 @@ class BookStoreController extends Controller
         
         // return view('bookstores.index', compact('bookstores'));
 
-                $bookstores = BookStore::with('user')->get();
+                $bookstores = Bookstore::with('user')->get();
 
         $bookstoresData = $bookstores->map(function ($bookstore) {
             $user = $bookstore->user;
@@ -38,7 +38,7 @@ class BookStoreController extends Controller
 
     public function show($id)
     {
-        $bookstore = BookStore::findOrFail($id);
+        $bookstore = Bookstore::findOrFail($id);
         //どのユーザーの本屋か取得
         $user = $bookstore->user;
         //イチオシレビュー表示の情報取得
