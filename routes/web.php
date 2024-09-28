@@ -19,13 +19,12 @@ Route::get('/novels/show', [ReviewController::class, 'create'])
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);
 
-// web.php
 
 // 小説表示処理
 Route::get('/novels', [NovelController::class, 'index']);
 Route::get('/novels/{id}', [NovelController::class, 'show'])->name('novels.show');
 
-// レビュー投稿処理（変更あり）
+// レビュー投稿処理
 Route::post('/novels/{id}', [ReviewController::class, 'store'])
     ->name('review.store')
     ->middleware(['auth', 'verified']);
