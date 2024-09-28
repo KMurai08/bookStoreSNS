@@ -29,7 +29,9 @@
                                         <span>{{ Auth::user()->name }}</span>
                                     </summary>
                                     <ul class="bg-base-100 rounded-t-none p-2 z-40">
-                                        <li><a>ユーザー情報編集</a></li>
+                                        <li>
+                                            <a href="{{ route('profile.edit')}}">ユーザー情報編集</a>
+                                        </li>
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">
                                                 @csrf

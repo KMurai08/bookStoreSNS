@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 //最初の画面に本屋一覧を表示
 Route::get('/', [BookStoreController::class, 'index']);
+Route::get('/bookstores', [BookstoreController::class, 'index'])->name('bookstores.index');
 //一覧にある本屋をクリックでその本屋の詳細画面へ移動
 Route::get('/bookstore/{id}',[BookstoreController::class,'show'])->name('bookstores.show');
 
