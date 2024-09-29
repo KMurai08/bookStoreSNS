@@ -16,13 +16,16 @@
     <header class="mx-5">
         <div class="navbar bg-base-100 my-6">
             <div class="flex-1">
-                <a class="btn btn-ghost text-3xl">BookStoreSNS</a>
+                <p class="text-3xl font-bold mx-10">BookStoreSNS</p>
             </div>
             <div class="flex-none">
                 @if (Route::has('login'))
                     @auth
                         <ul class="menu menu-horizontal px-1">
-                            <li><a>マイ本屋</a></li>
+                            <li><a href="">小説を書く</a></li>
+                            <li><a href="{{ route('novels.index') }}">読む本を探す</a></li>
+                            <li><a href="{{ route('mybookstores.show', Auth::user()->bookstore->id) }}">マイ本屋</a></li>
+
                             <li>
                                 <details>
                                     <summary>
@@ -30,7 +33,7 @@
                                     </summary>
                                     <ul class="bg-base-100 rounded-t-none p-2 z-40">
                                         <li>
-                                            <a href="{{ route('profile.edit')}}">ユーザー情報編集</a>
+                                            <a href="{{ route('profile.edit') }}">ユーザー情報編集</a>
                                         </li>
                                         <li>
                                             <form method="POST" action="{{ route('logout') }}">
