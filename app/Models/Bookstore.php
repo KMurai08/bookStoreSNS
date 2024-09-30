@@ -16,6 +16,7 @@ class Bookstore extends Model
         'bookstore_introduction',
         'url',
         'header_img',
+        
     ];
 
     public function user()
