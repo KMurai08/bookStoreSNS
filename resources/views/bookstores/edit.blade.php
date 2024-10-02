@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -48,6 +48,9 @@
         </div>
         <div class="bg-white rounded px-8 pt-6 pb-8 mb-4">
             <p class="text-xl font-semibold mb-5">陳列内容編集</p>
+            <div>
+                
+            </div>
             <p>準備中です</p>
         </div>
         <div class="bg-white rounded px-8 pt-6 pb-8 mb-4">

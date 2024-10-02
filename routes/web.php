@@ -23,17 +23,21 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.
 
 // 小説表示処理
 Route::get('/novels', [NovelController::class, 'index'])->name('novels.index');
+Route::get('/novels/create', [NovelController::class, 'create'])->name('novels.create');
 Route::get('/novels/{id}', [NovelController::class, 'show'])->name('novels.show');
 
 // レビュー投稿処理
 Route::post('/novels/{id}', [ReviewController::class, 'store'])
     ->name('review.store')
     ->middleware(['auth', 'verified']);
-//レビューを見る
+ //小説詳細ページでレビューを表示する
 Route::get('/novels/show', [ReviewController::class, 'create'])
     ->name('review.create')
     ->middleware(['auth', 'verified']);
-
+//レビュー詳細画面表示と編集・削除処理
+Route::get('/reviews/{id}', [ReviewController::class, 'show'])->name('reviews.show');
+Route::put('/reviews/{id}', [ReviewController::class, 'update'])->name('reviews.update');
+Route::delete('/reviews/{id}', [ReviewController::class, 'destroy'])->name('reviews.destroy');
 //ユーザー一覧など（未使用）
 Route::get('/users', [UserController::class, 'index']);
 Route::get('/users/{id}', [UserController::class, 'show']);

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
 
     <title>Document</title>
 </head>
@@ -15,13 +15,13 @@
     <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <h2 class="text-center text-3xl font-extrabold text-gray-900 mb-6">
-                Register for BookStoreSNS
+                新規登録
             </h2>
 
             <form method="POST" action="{{ route('register') }}">
                 @csrf
 
-                <!-- Name -->
+                <!-- ユーザー名 -->
                 <div>
                     <x-input-label for="name" :value="__('Name')" />
                     <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
@@ -29,7 +29,7 @@
                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 </div>
 
-                <!-- Email Address -->
+                <!-- メールアドレス -->
                 <div class="mt-4">
                     <x-input-label for="email" :value="__('Email')" />
                     <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
@@ -37,7 +37,7 @@
                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                 </div>
 
-                <!-- Bookstore Name -->
+                <!-- 本屋の名前（あとで変更できます） -->
                 <div class="mt-4">
                     <x-input-label for="bookstore_name" :value="__('Bookstore Name')" />
                     <x-text-input id="bookstore_name" class="block mt-1 w-full" type="text" name="bookstore_name"
@@ -68,7 +68,7 @@
                     </a>
 
                     <x-primary-button class="ms-4">
-                        {{ __('Register') }}
+                        {{ __('登録') }}
                     </x-primary-button>
                 </div>
             </form>

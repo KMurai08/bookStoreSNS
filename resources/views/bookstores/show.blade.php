@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -11,101 +11,104 @@
 </head>
 
 <body>
-    <div class="max-w-4xl mx-auto p-6">
-        <header>
-            <div class="navbar bg-base-100 my-6 border-y-4 border-gray-600">
-                <div class="flex-1">
-                    <a href="{{ route('bookstores.index') }}" class="btn btn-ghost text-3xl">BookStoreSNS</a>
-                </div>
-                <div class="flex-none">
+
+    <header class="mx-5">
+        <div class="navbar bg-base-100 my-6">
+            <div class="flex-1">
+                <a href="{{ route('bookstores.index') }}" class="text-3xl font-bold mx-10">BookStoreSNS</a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a href="{{ route('novels.index') }}">読む本を探す</a></li>
+
                     @if (Route::has('login'))
                         @auth
-                            <ul class="menu menu-horizontal px-1">
+                            @if ($canEdit)
                                 <li>
-                                @if ($canEdit)
                                     <a href="{{ route('bookstores.edit', $id) }}">本屋を編集</a>
-                                @endif
                                 </li>
-                                <li>
-                                    <details>
-                                        <summary>
-                                            <span>{{ Auth::user()->name }}</span>
-                                        </summary>
-                                        <ul class="bg-base-100 rounded-t-none p-2 z-40">
-
-                                            <li>
-                                                <form method="POST" action="{{ route('logout') }}">
-                                                    @csrf
-                                                    <button type="submit"
-                                                        class="underline text-sm text-gray-600 hover:text-gray-900">
-                                                        ログアウト
-                                                    </button>
-                                                </form>
-                                            </li>
-                                        </ul>
-                                    </details>
-                                </li>
-                            </ul>
+                            @else
+                                <li><a href="{{ route('mybookstores.show', Auth::user()->bookstore->id) }}">マイ本屋</a></li>
+                            @endif
+                            <li>
+                                <details>
+                                    <summary>
+                                        <span>{{ Auth::user()->name }}</span>
+                                    </summary>
+                                    <ul class="bg-base-100 rounded-t-none p-2 z-40">
+                                        <li><a href="{{ route('novels.create') }}" class="">
+                                                小説を投稿する
+                                            </a></li>
+                                        <li>
+                                            <a href="{{ route('profile.edit') }}">ユーザー情報編集</a>
+                                        </li>
+                                        <li>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="underline text-sm text-gray-600 hover:text-gray-900">
+                                                    ログアウト
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </details>
+                            </li>
                         @else
-                            <div>
+                            <li>
                                 <a href="{{ route('login') }}">ログイン</a>
-                            </div>
+                            </li>
 
                             @if (Route::has('register'))
-                                <div class="mx-4">
+                                <li>
                                     <a href="{{ route('register') }}">新規登録</a>
-                                </div>
+                                </li>
                             @endif
-
-                        @endauth
-                    @endif
-                </div>
+                    </ul>
+                @endauth
+                @endif
             </div>
-        </header>
-        <div role="tablist" class="tabs tabs-lifted tabs-lg">
-            <a role="tab" class="tab tab-active">本屋</a>
-            <a role="tab" class="tab">投稿レビュー</a>
-            <a role="tab" class="tab">投稿作品</a>
-            <a role="tab" class="tab">いいね</a>
-
         </div>
-
+    </header>
+    <div class="max-w-4xl mx-auto p-6">
         <div class="bg-white rounded-lg shadow-md p-8 my-10">
-            <div class="flex justify-end">
-                <div class="badge badge-primary badge-outline">{{ $name }}</div>
-            </div>
+
             <h1 class="text-3xl font-bold text-gray-800 text-center border-b-2 border-gray-200 pb-2">
                 {{ $bookstore_name }}</h1>
             <p class="text-gray-600 text-center py-4">{{ $bookstore_introduction }}</p>
         </div>
 
-        <div>
+        <div class="my-16">
             @if (isset($favorite_review_title) && isset($favorite_review_text))
-                <p class="text-l font-bold mx-5 mb-2">只今のイチオシ：{{ $favorite_novel_title }}
-                </p>
-                <div class="hero bg-base-200 py-4">
-                    <div class="hero-content text-center">
-                        <div class="max-w-md">
-                            <h1 class="text-4xl font-bold">{{ $favorite_review_title }}</h1>
-                            <p class="py-6">
-                                {{ $favorite_review_text }}
-                            </p>
-                            <a class="btn btn-primary" href="{{ route('novels.show', ['id' => $favorite_novel_id]) }}">
-                                小説を読む
-                            </a>
-                        </div>
+                <p class="text-xl border-y-2 text-center font-bold py-2 mb-4">只今のイチオシ</p>
+                <div class="flex w-full flex-col lg:flex-row">
+                    <div class="w-1/2 rounded-box shadow-md grid h-96 place-items-center overflow-auto p-2 m-1">
+                        <p>【{{ $favorite_novel_title }}】</p>
+                        <p>{{ $favorite_novel_introduction }}</p>
+                        <a class="btn btn-primary" href="{{ route('novels.show', ['id' => $favorite_novel_id]) }}">
+                            小説を読む
+                        </a>
                     </div>
+                    <div class="w-1/2 rounded-box shadow-md grid h-96 place-items-center overflow-auto p-2 m-1">
+                        <h1 class="text-l font-semibold">{{ $favorite_review_title }}</h1>
+                        <p class="py-6">
+                            {{ $favorite_review_text }}
+                        </p>
+                    </div>
+
                 </div>
             @else
                 <div class="hero bg-base-200 py-4">
                     <div class="hero-content text-center">
-                        <p>現在イチオシレビューはありません</p>
+                        <p>現在イチオシ作品はありません</p>
                     </div>
                 </div>
             @endif
 
         </div>
-        <div class="flex justify-center items-center bg-base-200 p-10 mb-10 mt-10">
+
+        <p class="text-xl border-y-2 text-center font-bold p-2 my-4">投稿レビュー一覧</p>
+        <div class="flex justify-center items-center bg-base-200 p-10 mb-10">
             <div class="relative w-full max-w-2xl bg-white px-10 rounded-lg shadow-lg overflow-hidden">
                 @if (count($reviews) > 0)
                     @foreach ($reviews as $index => $review)
@@ -115,10 +118,7 @@
                                 <p class="text-gray-600">{{ Str::limit($review->review_text, 200) }}</p>
                                 <div class="flex justify-end mt-2">
                                     <a href="{{ route('novels.show', $review->novel->id) }}"
-                                        class="link link-primary">{{ $review->novel->novel_title }}＞＞</a>
-                                </div>
-                                <div class="flex justify-end">
-                                    <a href="" class="link link-primary">レビュー全体を読む</a>
+                                        class="link link-primary">作品【{{ $review->novel->novel_title }}】を読む＞＞</a>
                                 </div>
                             </div>
                         </div>

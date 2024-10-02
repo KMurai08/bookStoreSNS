@@ -17,9 +17,9 @@ class NovelController extends Controller
     }
 
     public function create()
-    {
-        //
-    }
+{
+    return view('novels.create');
+}
 
 public function show($id)
 {
@@ -48,6 +48,7 @@ public function show($id)
     //レビューの情報
         'reviews' => $reviews->map(function ($review) {
                 return [
+                    'review_id' => $review->id,
                     'review_text' => $review->review_text,
                     'review_title' => $review->review_title,
                     'reviewer_name' => $review->user->name,

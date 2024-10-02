@@ -48,7 +48,7 @@ class BookstoreController extends Controller
         //イチオシレビュー表示の情報取得
         $userFavoriteReview = $user->favoriteReviews()
             ->select('reviews.id', 'reviews.review_title', 'reviews.review_text','reviews.novel_id')
-            ->with('novel:id,novel_title') 
+            ->with('novel:id,novel_title,novel_introduction') 
             ->first();
         // ユーザーの全てのレビューを取得
         $reviews = $user->reviews()
@@ -67,8 +67,9 @@ class BookstoreController extends Controller
         'canEdit' => $canEdit,
         'favorite_review_title' => $userFavoriteReview ? $userFavoriteReview->review_title : null,
         'favorite_review_text' => $userFavoriteReview ? $userFavoriteReview->review_text : null, 
-        'favorite_novel_title' => $userFavoriteReview ? $userFavoriteReview->novel->novel_title : null, 
-         'favorite_novel_id' => $userFavoriteReview ? $userFavoriteReview->novel_id : null, // この行を追加      
+        'favorite_novel_title' => $userFavoriteReview ? $userFavoriteReview->novel->novel_title : null,
+        'favorite_novel_introduction' => $userFavoriteReview ? $userFavoriteReview->novel->novel_introduction : null, 
+        'favorite_novel_id' => $userFavoriteReview ? $userFavoriteReview->novel_id : null,      
 
         ]);
     }
@@ -85,7 +86,7 @@ class BookstoreController extends Controller
 
             $validated = $request->validate([
              'bookstore_name' => 'required|max:30',
-             'bookstore_introduction' => 'required',
+             'bookstore_introduction' => 'nullable',
              'url' => 'nullable|url',
             ]);
 

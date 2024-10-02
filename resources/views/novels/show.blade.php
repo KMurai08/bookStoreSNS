@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja" class="bg-gray-100">
+<html lang="ja" data-theme="light">
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
@@ -91,6 +91,7 @@
                     <span class="">{{ $review['review_created_at'] }}</span>
                     <h3 class="font-semibold border-b mb-2">{{ $review['review_title'] }}</h3>
                     <p>{{ $review['review_text'] }}</p>
+                        <a href="{{ route('reviews.show', ['id' => $review['review_id']]) }}">詳細</a>
                 </div>
             @endforeach
         </div>
