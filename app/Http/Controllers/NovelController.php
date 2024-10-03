@@ -5,25 +5,25 @@ use App\Models\Novel;
 use App\Models\User;
 use App\Models\Review;
 use App\Models\Bookstore;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Str; 
 
 class NovelController extends Controller
 {
     public function index()
     {
-        $novels = Novel::all();
+        $novels = Novel::with('user')->latest()->get();
         return view('novels.index', compact('novels'));
     }
 
     public function create()
-    {
-        //
-    }
+{
+    return view('novels.create');
+}
 
 public function show($id)
 {
-    // $novel = Novel::findOrFail($id);
+
     $novel = Novel::with('user.bookstore')->findOrFail($id);
     $user = $novel->user;
     $reviews = Review::where('novel_id', $id)->get();
@@ -48,6 +48,7 @@ public function show($id)
     //レビューの情報
         'reviews' => $reviews->map(function ($review) {
                 return [
+                    'review_id' => $review->id,
                     'review_text' => $review->review_text,
                     'review_title' => $review->review_title,
                     'reviewer_name' => $review->user->name,

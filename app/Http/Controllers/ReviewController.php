@@ -51,33 +51,52 @@ class ReviewController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+public function show($id)
     {
-        //
+         $review = Review::with('user')->findOrFail($id);
+        return view('reviews.show', compact('review'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function update(Request $request, $id)
     {
-        //
-    }
+        $review = Review::findOrFail($id);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        // 認証済みユーザーであり、かつレビューの投稿者であることを確認
+        if (Auth::id() !== $review->user_id) {
+            return redirect()->route('reviews.show', $review->id)
+                ->with('error', '他のユーザーのレビューは編集できません。');
+        }
+        
+        $validatedData = $request->validate([
+            'review_title' => 'required|max:255',
+            'review_text' => 'required',
+        ]);
+
+        $review->update($validatedData);
+
+        return redirect()->route('reviews.show', $review->id)
+            ->with('success', 'レビューが更新されました。');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+   public function destroy($id)
     {
-        //
+        $review = Review::findOrFail($id);
+
+        // 認証済みユーザーであり、かつレビューの投稿者であることを確認
+        if (Auth::id() !== $review->user_id) {
+            return redirect()->route('reviews.show', $review->id)
+                ->with('error', '他のユーザーのレビューは削除できません。');
+        }
+
+        $novelId = $review->novel_id; // 小説ページにリダイレクトするために保存
+        $review->delete();
+
+        return redirect()->route('novels.show', $novelId)
+            ->with('success', 'レビューが削除されました。');
     }
+
     
 }

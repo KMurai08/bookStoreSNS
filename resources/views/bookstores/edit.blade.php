@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
@@ -10,10 +10,63 @@
     <title>書店情報更新</title>
 </head>
 
-<body class="bg-gray-100">
+<body class="">
+    <header class="">
+        <div class="navbar bg-base-100 my-6">
+            <div class="flex-1">
+                <a href="{{ route('bookstores.index') }}" class="text-3xl font-bold mx-10">BookStoreSNS</a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a href="{{ route('novels.index') }}">読む本を探す</a></li>
+
+                    @if (Route::has('login'))
+                        @auth
+                            <li><a href="{{ route('mybookstores.show', Auth::user()->bookstore->id) }}">マイ本屋</a></li>
+                            <li>
+                                <details>
+                                    <summary>
+                                        <span>{{ Auth::user()->name }}</span>
+                                    </summary>
+                                    <ul class="bg-base-100 rounded-t-none p-2 z-40">
+                                        <li><a href="{{ route('novels.create') }}" class="">
+                                                小説を投稿する
+                                            </a></li>
+                                        <li>
+                                            <a href="{{ route('profile.edit') }}">ユーザー情報編集</a>
+                                        </li>
+                                        <li>
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <button type="submit"
+                                                    class="underline text-sm text-gray-600 hover:text-gray-900">
+                                                    ログアウト
+                                                </button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </details>
+                            </li>
+                        @else
+                            <li>
+                                <a href="{{ route('login') }}">ログイン</a>
+                            </li>
+
+                            @if (Route::has('register'))
+                                <li>
+                                    <a href="{{ route('register') }}">新規登録</a>
+                                </li>
+                            @endif
+                    </ul>
+                @endauth
+                @endif
+            </div>
+        </div>
+    </header>
     <div class="container mx-auto p-4 md:p-8">
-        <div class="bg-white rounded px-8 pt-6 pb-8 mb-4">
-            <h1 class="text-2xl md:text-3xl font-bold mb-10 text-center text-gray-800">店舗情報編集</h1>
+
+        <h1 class="text-2xl md:text-3xl font-bold mb-10 text-center text-gray-800 border-y py-16">店舗情報編集</h1>
+        <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 shadow-md">
             <form action="{{ route('bookstores.update', $bookstore) }}" method="POST">
                 @csrf
                 @method('PUT')
@@ -46,11 +99,14 @@
                 </div>
             </form>
         </div>
-        <div class="bg-white rounded px-8 pt-6 pb-8 mb-4">
+        <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 shadow-md">
             <p class="text-xl font-semibold mb-5">陳列内容編集</p>
+            <div>
+
+            </div>
             <p>準備中です</p>
         </div>
-        <div class="bg-white rounded px-8 pt-6 pb-8 mb-4">
+        <div class="bg-white rounded px-8 pt-6 pb-8 mb-4 shadow-md">
             <p class="text-xl font-semibold mb-2">本屋を削除する</p>
             <p class="mb-4">投稿した作品、レビュー、本屋含めて全ての情報が削除されます</p>
             <form method="POST" action="{{ route('users.destroy', Auth::user()) }}"
