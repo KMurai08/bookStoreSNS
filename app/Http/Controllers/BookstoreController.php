@@ -50,12 +50,14 @@ class BookstoreController extends Controller
             ->select('reviews.id', 'reviews.review_title', 'reviews.review_text','reviews.novel_id')
             ->with('novel:id,novel_title,novel_introduction') 
             ->first();
+
         // ユーザーの全てのレビューを取得
         $reviews = $user->reviews()
         ->select('id', 'review_title', 'review_text', 'novel_id')
         ->with('novel:id,novel_title')
         ->get();
 
+        
         
         return view('bookstores.show')->with([
 
@@ -65,6 +67,7 @@ class BookstoreController extends Controller
         'name' => $user->name,
         'reviews' => $reviews,
         'canEdit' => $canEdit,
+        'favorite_review_id' => $userFavoriteReview ? $userFavoriteReview->id : null,
         'favorite_review_title' => $userFavoriteReview ? $userFavoriteReview->review_title : null,
         'favorite_review_text' => $userFavoriteReview ? $userFavoriteReview->review_text : null, 
         'favorite_novel_title' => $userFavoriteReview ? $userFavoriteReview->novel->novel_title : null,

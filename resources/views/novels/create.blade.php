@@ -34,12 +34,12 @@
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="genre_id">
                     ジャンル
                 </label>
-                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="genre_id">
-                    <option>ファンタジー</option>
-                    <option>SF</option>
-                    <option>ミステリー</option>
-                    <option>恋愛</option>
-                    <option>その他</option>
+                <select class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="genre_id" name="genre_id">
+                    <option value="1">ファンタジー</option>
+                    <option value="2">SF</option>
+                    <option value="3">ミステリー</option>
+                    <option value="4">恋愛</option>
+                    <option value="5">その他</option>
                 </select>
             </div>
             <div class="mb-4">
@@ -53,7 +53,7 @@
                 </select>
             </div>
             <div class="flex items-center justify-between">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="button">
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
                     投稿する
                 </button>
             </div>

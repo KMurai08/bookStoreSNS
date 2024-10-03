@@ -90,8 +90,8 @@
                     <span class="">{{ $review['reviewer_name'] }}</span>
                     <span class="">{{ $review['review_created_at'] }}</span>
                     <h3 class="font-semibold border-b mb-2">{{ $review['review_title'] }}</h3>
-                    <p>{{ $review['review_text'] }}</p>
-                        <a href="{{ route('reviews.show', ['id' => $review['review_id']]) }}">詳細</a>
+                    <p>{{ Str::limit($review['review_text'], 200, '...')  }}</p>
+                        <a class="link link-primary" href="{{ route('reviews.show', ['id' => $review['review_id']]) }}">詳細</a>
                 </div>
             @endforeach
         </div>

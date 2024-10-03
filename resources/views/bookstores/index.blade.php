@@ -13,7 +13,7 @@
 </head>
 
 <body class="antialiased">
-    <header class="mx-5">
+    <header class="">
         <div class="navbar bg-base-100 my-6">
             <div class="flex-1">
                 <p class="text-3xl font-bold mx-10">BookStoreSNS</p>

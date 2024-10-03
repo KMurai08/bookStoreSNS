@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html data-theme="light">
 <html lang="ja">
 
 <head>

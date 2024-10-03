@@ -12,10 +12,10 @@
 </head>
 
 <body class="">
-        <header class="mx-5">
+    <header class="">
         <div class="navbar bg-base-100 my-6">
             <div class="flex-1">
-                <p class="text-3xl font-bold mx-10">BookStoreSNS</p>
+                <a href="{{ route('bookstores.index') }}" class="text-3xl font-bold mx-10">BookStoreSNS</a>
             </div>
             <div class="flex-none">
                 <ul class="menu menu-horizontal px-1">
@@ -84,14 +84,14 @@
 
                 <div class="flex justify-between items-center mt-6">
                     @if (Auth::check() && Auth::id() === $review->user_id)
-                        <button class="btn btn-primary" onclick="my_modal_4.showModal()">
+                        <button class="btn btn-secondary" onclick="my_modal_4.showModal()">
                             <i class="fas fa-edit mr-2"></i>レビューを編集する
                         </button>
                     @else
                         <div></div> <!-- 編集ボタンがない場合のスペース確保 -->
                     @endif
-                    <a href="{{ route('novels.show', ['id' => $review->novel_id]) }}" class="btn btn-secondary">
-                        <i class="fas fa-book mr-2"></i>小説ページに戻る
+                    <a href="{{ route('novels.show', ['id' => $review->novel_id]) }}" class="btn btn-primary">
+                        <i class="fas fa-book mr-2"></i>小説を読む
                     </a>
                 </div>
             </div>
@@ -133,12 +133,12 @@
             </form>
         @endif
     </div>
-     <script>
-    function confirmDelete() {
-        if (confirm('このレビューを削除してもよろしいですか？この操作は取り消せません。')) {
-            document.getElementById('delete-form').submit();
+    <script>
+        function confirmDelete() {
+            if (confirm('このレビューを削除してもよろしいですか？この操作は取り消せません。')) {
+                document.getElementById('delete-form').submit();
+            }
         }
-    }
     </script>
 </body>
 
