@@ -71,9 +71,11 @@
         </div>
     </header>
     <div class="max-w-4xl mx-auto p-6">
-        <div class="bg-white rounded-lg shadow-md p-8 my-10">
-
-            <h1 class="text-3xl font-bold text-gray-800 text-center border-b-2 border-gray-200 pb-2">
+        <div class="bg-white rounded-lg shadow-md p-8 my-10 flex flex-col">
+            <div class="flex justify-center mb-5">
+                <span class="badge badge-neutral">書店</span>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-800 text-center border-b-2 border-gray-200 pb-4">
                 {{ $bookstore_name }}</h1>
             <p class="text-gray-600 text-center py-4">{{ $bookstore_introduction }}</p>
         </div>
@@ -81,7 +83,7 @@
         <div class="my-16 max-w-4xl mx-auto px-4">
 
             @if (isset($favorite_review_title) && isset($favorite_review_text))
-            <p class="text-xl border-y-2 text-center font-bold py-6 mb-6">只今のイチオシ</p>
+                <p class="text-xl border-y-2 text-center font-bold py-6 mb-6">只今のイチオシ</p>
 
                 <div class="bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden">
                     <div class="md:flex">
@@ -100,7 +102,7 @@
                                 <h3 class="text-xl font-bold text-black mb-4">{{ $favorite_review_title }}</h3>
                             </div>
                             <p class="text-gray-700">{{ Str::limit($favorite_review_text, 300) }}</p>
-                            <a href="{{route('reviews.show', ['id' => $favorite_review_id]) }}"
+                            <a href="{{ route('reviews.show', ['id' => $favorite_review_id]) }}"
                                 class="inline-block mt-4 text-black hover:text-gray-600 transition-colors duration-300 font-semibold">続きを読む...</a>
                         </div>
                     </div>
