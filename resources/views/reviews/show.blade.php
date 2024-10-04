@@ -72,7 +72,11 @@
                 <div class="bg-gray-50 p-6 rounded-lg mb-6">
                     <h2 class="text-2xl font-semibold mb-4">{{ $review->review_title }}</h2>
                     <div class="flex items-center mb-4">
-                        <span class="badge badge-primary mr-2">レビュアー</span>
+                        <span class="badge badge-primary mr-2">作品</span>
+                        <a href="{{ route('novels.show', ['id' => $review->novel_id]) }}">{{ $review->novel->novel_title }}</a>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <span class="badge badge-secondary mr-2">レビュアー</span>
                         <span class="font-medium">{{ $review->user->name }}</span>
                     </div>
                     <div class="flex items-center mb-4">

@@ -78,44 +78,6 @@
             <p class="text-gray-600 text-center py-4">{{ $bookstore_introduction }}</p>
         </div>
 
-        {{-- <div class="my-16 max-w-6xl mx-auto px-4 bg-white">
-            @if (isset($favorite_review_title) && isset($favorite_review_text))
-                <p class="text-xl border-y-2 text-center font-bold py-6 mb-6">只今のイチオシ</p>
-
-                <div class="flex flex-col lg:flex-row gap-8">
-                    <div
-                        class="lg:w-1/2 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-                        <div class="h-48 bg-black flex items-center justify-center p-4">
-                            <h3 class="text-2xl font-bold text-white text-center">{{ $favorite_novel_title }}</h3>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-gray-700 mb-4">{{ Str::limit($favorite_novel_introduction, 150) }}</p>
-                            <a class="inline-block px-6 py-2 bg-black text-white font-semibold rounded-full transition-all duration-300 hover:bg-gray-800"
-                                href="{{ route('novels.show', ['id' => $favorite_novel_id]) }}">
-                                小説を読む
-                            </a>
-                        </div>
-                    </div>
-                    <div
-                        class="lg:w-1/2 bg-white border border-gray-200 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:shadow-2xl">
-                        <div class="h-48 bg-gray-900 flex items-center justify-center p-4">
-                            <h3 class="text-2xl font-bold text-white text-center">{{ $favorite_review_title }}</h3>
-                        </div>
-                        <div class="p-6">
-                            <p class="text-gray-700">{{ Str::limit($favorite_review_text, 200) }}</p>
-                            <a href="#"
-                                class="inline-block mt-4 text-black hover:text-gray-600 transition-colors duration-300 font-semibold">続きを読む...</a>
-                        </div>
-                    </div>
-                </div>
-            @else
-                <div class="bg-gray-100 rounded-lg shadow-md p-8 text-center">
-                    <p class="text-xl text-gray-800">現在イチオシ作品はありません</p>
-                </div>
-            @endif
-        </div> --}}
-
-
         <div class="my-16 max-w-4xl mx-auto px-4">
 
             @if (isset($favorite_review_title) && isset($favorite_review_text))
@@ -127,7 +89,7 @@
                         <div class="skeleton md:w-2/5 bg-gray-100 p-6">
                             <h3 class="text-2xl font-bold text-black mb-4">{{ $favorite_novel_title }}</h3>
                             <p class="text-gray-700 mb-6">{{ Str::limit($favorite_novel_introduction, 200) }}</p>
-                            <a class="btn btn-outline"
+                            <a class="btn btn-outline btn-primary"
                                 href="{{ route('novels.show', ['id' => $favorite_novel_id]) }}">
                                 小説を読む
                             </a>
@@ -167,7 +129,7 @@
                                 <a href="{{ route('novels.show', $review->novel->id) }}" class="link link-primary">
                                     【{{ $review->novel->novel_title }}】を読む
                                 </a>
-                                <a class="link link-primary" href="{{ route('reviews.show', $review->id) }}">
+                                <a class="link link-secondary" href="{{ route('reviews.show', $review->id) }}">
                                     レビュー全体を読む
                                 </a>
                             </div>
