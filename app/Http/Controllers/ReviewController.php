@@ -53,7 +53,7 @@ class ReviewController extends Controller
      */
 public function show($id)
     {
-         $review = Review::with('user')->findOrFail($id);
+         $review = Review::with('user','novel')->findOrFail($id);
         return view('reviews.show', compact('review'));
     }
 
