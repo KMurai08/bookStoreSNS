@@ -71,10 +71,8 @@
         </div>
     </header>
     <div class="max-w-4xl mx-auto p-6">
-        <div class="bg-white rounded-lg shadow-md p-8 my-10 flex flex-col">
-            <div class="flex justify-center mb-5">
-                <span class="badge badge-neutral">書店</span>
-            </div>
+        <div class="bg-white rounded-lg border-4 p-8 my-10">
+               
             <h1 class="text-3xl font-bold text-gray-800 text-center border-b-2 border-gray-200 pb-4">
                 {{ $bookstore_name }}</h1>
             <p class="text-gray-600 text-center py-4">{{ $bookstore_introduction }}</p>
