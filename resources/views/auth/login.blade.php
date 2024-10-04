@@ -39,7 +39,7 @@
                 </div>
 
                 <!-- Remember Me -->
-                <div class="flex items-center justify-between mb-6">
+                {{-- <div class="flex items-center justify-between mb-6">
                     <label class="flex items-center">
                         <input type="checkbox" name="remember"
                             class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50">
@@ -49,7 +49,7 @@
                         <a href="{{ route('password.request') }}"
                             class="text-sm text-indigo-600 hover:text-indigo-800">パスワードを忘れましたか?</a>
                     @endif
-                </div>
+                </div> --}}
 
                 <button type="submit"
                     class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50">
