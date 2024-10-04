@@ -73,7 +73,7 @@
                     <div
                         class="bg-white shadow-md rounded-lg p-6 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg">
                         
-                        <h2 class="text-xl font-semibold mb-2">{{ $data['bookstore']->bookstore_name }}</h2>
+                        <h2 class="text-xl font-semibold mb-2 py-2 text-center rounded-lg border-4">{{ $data['bookstore']->bookstore_name }}</h2>
                         <p class="text-gray-600 mb-4">{{ Str::limit($data['bookstore']->bookstore_introduction,150) }}</p>
 
                         <div class="border-t pt-4">
@@ -92,6 +92,7 @@
             @endforeach
         </div>
     </div>
+
 </body>
 
 </html>
