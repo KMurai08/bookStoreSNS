@@ -12,13 +12,16 @@
 
 <body>
 
-    <header class="">
+    {{-- <header class="">
         <div class="navbar bg-base-100 my-6">
             <div class="flex-1">
                 <a href="{{ route('bookstores.index') }}" class="text-3xl font-bold mx-10">BookStoreSNS</a>
             </div>
+        <p class="text-center">{{ $name }}の本屋へようこそ</p>
+
             <div class="flex-none">
                 <ul class="menu menu-horizontal px-1">
+
                     <li><a href="{{ route('novels.index') }}">読む本を探す</a></li>
 
                     @if (Route::has('login'))
@@ -69,13 +72,72 @@
                 @endif
             </div>
         </div>
-    </header>
+    </header> --}}
+    <header class="">
+    <div class="navbar bg-base-100 my-6">
+        <div class="navbar-start">
+            <a href="{{ route('bookstores.index') }}" class="text-3xl font-bold mx-10">BookStoreSNS</a>
+        </div>
+        <div class="navbar-center">
+            <p class="text-x">{{ $name }}の本屋へようこそ</p>
+        </div>
+        <div class="navbar-end">
+            <ul class="menu menu-horizontal px-1">
+                <li><a href="{{ route('novels.index') }}">読む本を探す</a></li>
+                @if (Route::has('login'))
+                    @auth
+                        @if ($canEdit)
+                            <li>
+                                <a href="{{ route('bookstores.edit', $id) }}">本屋を編集</a>
+                            </li>
+                        @else
+                            <li><a href="{{ route('mybookstores.show', Auth::user()->bookstore->id) }}">マイ本屋</a></li>
+                        @endif
+                        <li>
+                            <details>
+                                <summary>
+                                    <span>{{ Auth::user()->name }}</span>
+                                </summary>
+                                <ul class="bg-base-100 rounded-t-none p-2 z-40">
+                                    <li><a href="{{ route('novels.create') }}" class="">
+                                            小説を投稿する
+                                        </a></li>
+                                    <li>
+                                        <a href="{{ route('profile.edit') }}">ユーザー情報編集</a>
+                                    </li>
+                                    <li>
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+                                            <button type="submit"
+                                                class="underline text-sm text-gray-600 hover:text-gray-900">
+                                                ログアウト
+                                            </button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </details>
+                        </li>
+                    @else
+                        <li>
+                            <a href="{{ route('login') }}">ログイン</a>
+                        </li>
+                        @if (Route::has('register'))
+                            <li>
+                                <a href="{{ route('register') }}">新規登録</a>
+                            </li>
+                        @endif
+                    @endauth
+                @endif
+            </ul>
+        </div>
+    </div>
+</header>
     <div class="max-w-4xl mx-auto p-6">
         <div class="bg-white rounded-lg border-4 p-8 my-10">
-               
+
             <h1 class="text-3xl font-bold text-gray-800 text-center border-b-2 border-gray-200 pb-4">
                 {{ $bookstore_name }}</h1>
-            <p class="text-gray-600 text-center py-4">{{ $bookstore_introduction }}</p>
+            <p class="text-gray-600 text-center pt-6">{{ $bookstore_introduction }}</p>
         </div>
 
         <div class="my-16 max-w-4xl mx-auto px-4">
